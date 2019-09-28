@@ -35,10 +35,10 @@ Filter 定义如下 `Filter(event map[string]interface{}) (map[string]interface{
 ### Gohangout 里面的调用
 
 ```go
-		p, err := plugin.Open(filterType)  # filterType is "title.so" here
-		
-		new, err := p.Lookup("New")
+p, err := plugin.Open(filterType)  # filterType is "title.so" here
 
-		return new.(func(map[interface{}]interface{}) Filter)(config)
+new, err := p.lookup("new")
+
+return new.(func(map[interface{}]interface{}) filter)(config)
 ```
 
