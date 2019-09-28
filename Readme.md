@@ -15,7 +15,7 @@ inputs:
     - Stdin: {}
 
 filters:
-    - title.so:
+    - 'path/to/title.so':
         fields: [message]
 
 outputs:
