@@ -4,9 +4,7 @@ import (
 	"strings"
 
 	"github.com/childe/gohangout/field_setter"
-	"github.com/childe/gohangout/filter"
 	"github.com/childe/gohangout/value_render"
-	// "github.com/golang/glog"
 )
 
 // TitleFilter implents github.com/childe/gohangout/filter.Filter interface
@@ -16,7 +14,7 @@ type TitleFilter struct {
 }
 
 // New returns a filter.Filter interface
-func New(config map[interface{}]interface{}) filter.Filter {
+func New(config map[interface{}]interface{}) interface{} {
 	plugin := &TitleFilter{
 		config: config,
 		fields: make(map[field_setter.FieldSetter]value_render.ValueRender),
@@ -26,12 +24,12 @@ func New(config map[interface{}]interface{}) filter.Filter {
 		for _, f := range fieldsValue.([]interface{}) {
 			fieldSetter := field_setter.NewFieldSetter(f.(string))
 			if fieldSetter == nil {
-				// glog.Fatalf("could build field setter from %s", f.(string))
+				panic("could build field setter from " + f.(string))
 			}
 			plugin.fields[fieldSetter] = value_render.GetValueRender2(f.(string))
 		}
 	} else {
-		// glog.Fatal("fields must be set in title filter plugin")
+		panic("fields must be set in title filter plugin")
 	}
 	return plugin
 }

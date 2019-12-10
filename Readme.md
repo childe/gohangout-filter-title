@@ -26,7 +26,7 @@ outputs:
 
 ### New
 
-New 函数的定义一定是这样的 `New(config map[interface{}]interface{}) filter.Filter` . 在 Gohangout 里面会调用 plugin 的 New 方法来生成一个 Filter 实例.
+New 函数的定义一定是这样的 `New(config map[interface{}]interface{}) interface{}` . 在 Gohangout 里面会调用 plugin 的 New 方法来生成一个 Filter 实例.
 
 ### Filter
 
@@ -39,6 +39,6 @@ p, err := plugin.Open(filterType)  # filterType is "title.so" here
 
 new, err := p.lookup("new")
 
-return new.(func(map[interface{}]interface{}) filter)(config)
+return new.(func(map[interface{}]interface{}) interface{})(config)
 ```
 
